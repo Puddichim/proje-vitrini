@@ -32,7 +32,7 @@ class CreateComment(View):
         blog = get_object_or_404(Blog.objects.filter(is_active=True, id=request.POST.get("id")))
         comment = request.POST.get("comment")
         if not comment:
-            messages.warning(request, "Comment required")
+            messages.warning(request, "Yorum boş olamaz")
             return redirect("blogs:blog", slug=blog.slug)
         c = Comment(
             comment = comment,
@@ -40,7 +40,7 @@ class CreateComment(View):
             blog = blog
         )
         c.save()
-        messages.success(request, "Comment created")
+        messages.success(request, "Yorum yapıldlı")
         return redirect(get_blog_url(blog.slug)+"#comments")
 
 class CreateReply(View):
@@ -48,7 +48,7 @@ class CreateReply(View):
         comment = get_object_or_404(Comment.objects.filter(is_active=True, id=request.POST.get("id")))
         reply = request.POST.get("reply")
         if not reply:
-            messages.warning(request, "Reply required")
+            messages.warning(request, "Cevap boş olamaz")
             return redirect("blogs:blog", slug=comment.blog.slug)
 
         r = Reply(
@@ -58,7 +58,7 @@ class CreateReply(View):
         )
         r.save()
 
-        messages.success(request, "Reply created")
+        messages.success(request, "Cevap oluşturuldu")
         return redirect(get_blog_url(comment.blog.slug)+"#comments")
 
 class CreateBookmark(View):
@@ -66,14 +66,14 @@ class CreateBookmark(View):
         blog = get_object_or_404(Blog.objects.filter(is_active=True, id=request.POST.get("id")))
         bookmarked = Bookmark.objects.filter(creator=request.user, blog=blog).first()
         if bookmarked:
-            messages.info(request, "Already bookmarked this blog")
+            messages.info(request, "Çoktan kaydedilmiş")
         else:
             b = Bookmark(
                 blog = blog,
                 creator = request.user
             )
             b.save()
-            messages.success(request, "Bookmark created")
+            messages.success(request, "Kaydedildi")
         return redirect("blogs:blog", slug=blog.slug)
 
 class CreateLike(View):
@@ -81,9 +81,9 @@ class CreateLike(View):
         blog = get_object_or_404(Blog.objects.filter(is_active=True, id=request.POST.get("id")))
         liked = BlogLike.objects.filter(blog=blog, creator=request.user).first()
         if liked:
-            messages.info(request, "You are already liked this post")
+            messages.info(request, "Zaten beğendiniz")
         else:
             l = BlogLike(creator=request.user, blog=blog)
             l.save()
-            messages.success(request, "Liked this blog")
+            messages.success(request, "Beğenildi")
         return redirect(get_blog_url(blog.slug)+"#features")

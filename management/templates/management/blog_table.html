@@ -3,11 +3,11 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">ID</th>
-      <th scope="col">Title</th>
-      <th scope="col">Desc</th>
-      <th scope="col">Categories</th>
-      <th scope="col">Created On</th>
-      <th scope="col">Is Published</th>
+      <th scope="col">Başlık</th>
+      <th scope="col">Açıklama</th>
+      <th scope="col">Kategori</th>
+      <th scope="col">Oluşturulma tarihi</th>
+      <th scope="col">Yayımlanma tarihi</th>
       <th scope="col">Actions</td>
     </tr>
   </thead>
@@ -24,11 +24,11 @@
       <td>
         <a class="btn btn-warning" href="{% url 'manage:edit_blog' blog.id %}" role="button">
           <i class="bi bi-pencil-square"></i>
-          Edit
+          Düzenle
         </a>
         <a class="btn btn-danger" href="{% url 'manage:delete_blog' blog.id %}" role="button">
           <i class="bi bi-trash3"></i>
-          Delete
+          Kaldır
         </a>
       </td>
     </tr>

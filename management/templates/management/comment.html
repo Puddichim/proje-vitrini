@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
-{% block titlw %}comment{% endblock %}
+{% block title %}Yorumlar{% endblock %}
 
 {% block body %}
 <div class="container mt-5">
   <div class="row mb-3">
     <h1 class="text-center">
-      Manage Comments
+      Yorumları yönet
     </h1>
   </div>
   <div class="row">
@@ -15,10 +15,10 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">ID</th>
-          <th scope="col">Comment</th>
-          <th scope="col">Creator</th>
-          <th scope="col">Blog ID</th>
-          <th scope="col">Blog Title</td>
+          <th scope="col">Yorum</th>
+          <th scope="col">Yorumcu</th>
+          <th scope="col">Paylaşım id</th>
+          <th scope="col">Başlık</td>
           <th scope="col">Actions</td>
         </tr>
       </thead>
@@ -34,7 +34,7 @@
           <td>
             <a class="btn btn-danger" href="{% url 'manage:delete_comment' comment.id %}" role="button">
               <i class="bi bi-trash3"></i>
-              Delete
+              Kaldır
             </a>
           </td>
         </tr>

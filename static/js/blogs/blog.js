@@ -4,17 +4,17 @@ const copyUrl = () => {
   navigator.clipboard.writeText(url)
   .then(() => {
     const popover = new bootstrap.Popover(copyBtn, {
-      content: 'URL copied to clipboard',
+      content: 'URL kopyalandı.',
       trigger: 'manual'
     });
     popover.show();
-    setTimeout(() => popover.hide(), 2000); // Hide the popover after 2 seconds
+    setTimeout(() => popover.hide(), 2000); 
   }).catch(err => {
     const popover = new bootstrap.Popover(copyBtn, {
-      content: 'Failed to copy: ' + err,
+      content: 'Kopyalanırken hata oluştu: ' + err,
       trigger: 'manual'
     });
     popover.show();
-    setTimeout(() => popover.hide(), 2000); // Hide the popover after 2 seconds
+    setTimeout(() => popover.hide(), 2000); 
   });
 }

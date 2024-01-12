@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Latest{% endblock %}
+{% block title %}En son{% endblock %}
 
 {% block body %}
 <div class="container mt-5 mb-5">
@@ -14,7 +14,7 @@
         {% include "card.html" with blog=blog %}
       {% endif %}
     {% empty %}
-      <p class="text-center">No blog found !!!</p>
+      <p class="text-center">Paylaşım bulunamadı.</p>
     {% endfor %}
   </div>
 </div>

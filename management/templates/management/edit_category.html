@@ -14,11 +14,11 @@
       {% csrf_token %}
       <div class="row mb-3">
         <label for="category" class="form-label">Category:</label>
-        <input type="text" class="form-control" id="category" placeholder="Category" name="category" value="{{ category.category }}" required autofocus>
+        <input type="text" class="form-control" id="category" placeholder="Kategori" name="category" value="{{ category.category }}" required autofocus>
       </div>
       <div class="row mb-3">
-        <label for="desc" class="form-label">Description:</label>
-        <textarea class="form-control" placeholder="Type description here" id="desc" style="height: 100px" name="desc">{{ category.desc }}</textarea>
+        <label for="desc" class="form-label">Açıklama:</label>
+        <textarea class="form-control" placeholder="Açıklama yazın" id="desc" style="height: 100px" name="desc">{{ category.desc }}</textarea>
       </div>
       <div class="row float-end">
         <button type="submit" class="btn btn-outline-success">Save</button>

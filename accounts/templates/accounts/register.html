@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}Register - Accounts{% endblock %}
+{% block title %}Kayıt ol{% endblock %}
 
 {% block body %}
 <div class="container mt-5 mb-5">
@@ -8,15 +8,15 @@
 <form method="post" action="{% url 'accounts:register' %}">
   {% csrf_token %}
   <h1 class="text-center">
-    Register
+    Kayıt ol
   </h1>
   <div class="mb-3">
     <label for="username" class="form-label">
-      Username
+      Kullanıcı adı
     </label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="usernameHelp" required autofocus>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Kullanıcı adı" aria-describedby="usernameHelp" required autofocus>
     <ul class="usernameHelp">
-      <li class="form-text">Must be unique</li>
+      <li class="form-text">Kullanılmayan bir kullanıcı adı olmalı!</li>
     </ul>
   </div>
   <div class="row mb-3">
@@ -24,13 +24,13 @@
       <label for="firstname" class="form-label">
         First name
       </label>
-      <input type="text" id="firstname" class="form-control" placeholder="First name" name="firstname" required>
+      <input type="text" id="firstname" class="form-control" placeholder="İsim" name="firstname" required>
     </div>
     <div class="col-xs-12 col-sm-6">
       <label for="lastname" class="form-label">
         Last name
       </label>
-      <input type="text" id="lastname" class="form-control" placeholder="Last name (optional)" name="lastname">
+      <input type="text" id="lastname" class="form-control" placeholder="Soy isim (opsiyonel)" name="lastname">
     </div>
   </div>
   <div class="mb-3">
@@ -41,32 +41,32 @@
   </div>
   <div class="mb-3">
     <label for="password1" class="form-label">
-      Password
+      Şifre
     </label>
-    <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" aria-describedby="passwordHelp" required>
+    <input type="password" class="form-control" id="password1" name="password1" placeholder="Şifre" aria-describedby="passwordHelp" required>
     <ul class="passwordHelp">
-      <li class="form-text">Min length should be 6</li>
-      <li class="form-text">One digit required</li>
-      <li class="form-text">One special character required</li>
+      <li class="form-text">En az 6 karakterden oluşmalı</li>
+      <li class="form-text">En az bir rakam bulundurmalı</li>
+      <li class="form-text">En az bir adet özel karakter bulundurmalı</li>
     </ul>
   </div>
   <div class="mb-3">
     <label for="password2" class="form-label">
-      Confirm Password
+      Şifreyi onayla
     </label>
-    <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+    <input type="password" class="form-control" id="password2" name="password2" placeholder="Şifre" required>
   </div>
   <div class="form-check mb-3">
     <input class="form-check-input" type="checkbox" value="" id="agreeCheckbox" required>
     <label class="form-check-label" for="invalidCheck">
-      Agree to <a class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#termsModal">
-        terms and conditions
-      </a> 
+       <a class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#termsModal">
+        Şartlar ve koşulları 
+      </a>  kabul ediyorum.
     </label>
   </div>
   <button type="submit" class="btn btn-success w-100">Register</button>
   <div class="mt-3">
-    <p>Already have account? <a href="{% url 'accounts:login' %}" class="text-decoration-none">Login</a></p>
+    <p>Zaten hesabın var mı? <a href="{% url 'accounts:login' %}" class="text-decoration-none">Giriş yap.</a></p>
   </div>
 </form>
 </div>
@@ -74,18 +74,18 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+        <h5 class="modal-title" id="termsModalLabel">Şartlar ve koşullar</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p>
-          By registering yourself, you agree to abide by the terms and conditions of our website. This includes but is not limited to respecting the privacy of other users, refraining from posting inappropriate content, and following all applicable laws and regulations.
-          <a href="{% url 'terms_and_conditions' %}" class="text-decoration-none">Read More</a>
+          Kendinizi kaydettirerek web sitemizin şart ve koşullarına uymayı kabul etmiş olursunuz. Bu, diğer kullanıcıların gizliliğine saygı göstermeyi, uygunsuz içerik yayınlamaktan kaçınmayı ve geçerli tüm yasa ve düzenlemelere uymayı içerir ancak bunlarla sınırlı değildir.
+          <a href="{% url 'terms_and_conditions' %}" class="text-decoration-none">daha fazla oku...</a>
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="handleAgree()">Agree</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" onclick="handleAgree()">Kabul et</button>
       </div>
     </div>
   </div>

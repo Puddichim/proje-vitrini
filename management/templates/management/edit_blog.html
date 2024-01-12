@@ -14,12 +14,12 @@
       {% csrf_token %}
       <input type="hidden" name="id" value="{{ blog.id }}">
       <div class="row mb-3">
-        <label for="title" class="form-label">Title:</label>
-        <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="{{ blog.title }}" required autofocus>
+        <label for="title" class="form-label">Başlık:</label>
+        <input type="text" class="form-control" id="title" placeholder="Başlık" name="title" value="{{ blog.title }}" required autofocus>
       </div>
       <div class="row mb-3">
-        <label for="desc" class="form-label">Description:</label>
-        <textarea class="form-control" placeholder="Type description here" id="desc" style="height: 100px" name="desc">{{ blog.desc }}</textarea>
+        <label for="desc" class="form-label">Açıklama:</label>
+        <textarea class="form-control" placeholder="Açıklama yazın" id="desc" style="height: 100px" name="desc">{{ blog.desc }}</textarea>
       </div>
       <br>
       {{ form.media }}

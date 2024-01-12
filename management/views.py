@@ -33,13 +33,13 @@ class CreateBlog(View):
         status = data.get("status")
 
         if not (title and desc and content and thumbnail and categories and status):
-            messages.info(request, "title, desc, content, thumbnail, categories, or status can't be empty")
+            messages.info(request, "başlık, açıklama, içerik, kategori, durum ve resim boş olamaz")
             return redirect("manage:create_blog")
 
         try:
             status = bool(int(status))
         except:
-            messages.info(request, "Something wrong with status")
+            messages.info(request, "Bir sorun oluştu")
             return redirect("manage:create_blog")
 
         blog = Blog(
@@ -59,7 +59,7 @@ class CreateBlog(View):
                 pass
 
         blog.save()
-        messages.success(request, "Blog created")
+        messages.success(request, "Paylaşım oluşturuldu")
 
         return redirect("manage:create_blog")
 
@@ -75,21 +75,21 @@ class CreateCategory(View):
 
         c = Category.objects.filter(category=category).first()
         if c is not None:
-            messages.warning(request, "Category already exists")
+            messages.warning(request, "Kategori zaten var")
         else:
             c = Category(
                 category=category,
                 desc=desc
             )
             c.save()
-            messages.success(request, "Category created")
+            messages.success(request, "Kategori oluşturuldu !")
         return redirect("manage:create_category")
         
 class EditBlog(View):
     def get(self, request, id):
         blog = Blog.objects.filter(id=id, creator=request.user).first()
         if blog is None:
-            messages.info(request, "Blog not exists")
+            messages.info(request, "Paylaşım bulunamadı")
             return redirect("manage:blog")
         categories = Category.objects.all()
         form = CKEditorForm({"content": blog.content})
@@ -100,7 +100,7 @@ class EditBlog(View):
         id = data.get("id")
         blog = Blog.objects.filter(is_active=True, creator=request.user, id=id).first()
         if blog is None:
-            messages.info(request, "Blog doesn't exists")
+            messages.info(request, "Paylaşım bulunamadı")
             return redirect("manage:blog")
 
         title = data.get("title")
@@ -122,7 +122,7 @@ class EditBlog(View):
                 blog.published_on = timezone.now()
             blog.is_published = bool(status)
         except:
-            messages.info(request, "Error while updating status")
+            messages.info(request, "Hata oluştu")
         
         blog.categories.set([])
         for id in categories:
@@ -133,7 +133,7 @@ class EditBlog(View):
                 pass
 
         blog.save()
-        messages.success(request, "Changes saved")
+        messages.success(request, "Değişiklikler kaydedildi")
 
         return redirect("manage:blog")
 
@@ -141,11 +141,11 @@ class DeleteBlog(View):
     def get(self, request, id):
         blog = Blog.objects.filter(id=id, creator=request.user).first()
         if blog is None:
-            messages.warning(request, "Blog doesn't exists")
+            messages.warning(request, "Paylaşım bulunamadı")
         else:
             blog.is_active = False
             blog.save()
-            messages.info(request, "Blog deleted")
+            messages.info(request, "Paylaşım silindi")
 
         return redirect("manage:blog")
 
@@ -159,12 +159,12 @@ class EditCategory(View):
         data = request.POST
         category, desc = data.get("category"), data.get("desc")
         if not ((category and desc) or c):
-            messages.warning(request, "Category or Desc can't be empty. OR Category doesn't exists")
+            messages.warning(request, "Kategori veya açıklama boş olamaz!")
             return redirect("manage:category")
         c.category = category
         c.desc = desc
         c.save()
-        messages.success(request, "Changes saved")
+        messages.success(request, "Değişiklikler kaydedildi")
         return redirect("manage:category")
         
 
@@ -173,7 +173,7 @@ class DeleteCategory(View):
         category = get_object_or_404(Category, id=id)
         category.is_active = False
         category.save()
-        messages.info(request, "Category removed")
+        messages.info(request, "Kayıt silindi")
         return redirect("manage:category")
 
 class ManageComment(View):
@@ -185,9 +185,9 @@ class DeleteComment(View):
     def get(self, request, id):
         comment = get_object_or_404(Comment.objects.filter(id=id, is_active=True))
         if comment.blog.creator.username != request.user.username:
-            messages.warning(request, "You are not author of that blog")
+            messages.warning(request, "Bu yorumu silemezsiniz")
             return redirect("manage:comment")
         comment.is_active = False
         comment.save()
-        messages.success(request, "Comment deleted")
+        messages.success(request, "Yorum silindi")
         return redirect("manage:comment")

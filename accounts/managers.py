@@ -12,6 +12,7 @@ class UserManager(BaseUserManager):
         if email := extra_fields.get("email", ""):
             extra_fields["email"] = self.normalize_email(email)
         user = self.model(username=username, **extra_fields)
+        extra_fields.setdefault('is_author', True)
         user.set_password(password)
         user.save()
         return user

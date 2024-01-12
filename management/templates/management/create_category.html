@@ -1,24 +1,24 @@
 {% extends 'layout.html' %}
 
-{% block title %}Add Category{% endblock %}
+{% block title %}Kategori ekle{% endblock %}
 
 {% block body %}
 <div class="container mt-5 mb-5">
   <form method="post" action="{% url 'manage:create_category' %}">
     {% csrf_token %}
     <h1 class="text-center mb-3">
-      Add Category
+      Kategori ekle
     </h1>
     <div class="mb-3">
-      <label for="category" class="form-label">Category:</label>
-      <input type="text" class="form-control" id="category" placeholder="category" name="category">
+      <label for="category" class="form-label">Kategori:</label>
+      <input type="text" class="form-control" id="category" placeholder="Kategori" name="category">
     </div>
     <div class="mb-3">
-      <label for="desc" class="form-label">Description:</label>
-      <textarea class="form-control" id="desc" rows="5" name="desc" placeholder="Type description here"></textarea>
+      <label for="desc" class="form-label">Açıklama:</label>
+      <textarea class="form-control" id="desc" rows="5" name="desc" placeholder="Açıklama yazın"></textarea>
     </div>
     <div class="row float-end">
-      <button type="submit" class="btn btn-outline-success">Create</button>
+      <button type="submit" class="btn btn-outline-success">Oluştur</button>
     </div>
   </form>
 </div>
