@@ -2,3 +2,6 @@ django
 tzdata
 django-ckeditor
 pillow
+django-environ
+
+

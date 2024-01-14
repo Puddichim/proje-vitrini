@@ -121,7 +121,7 @@
     <p>{{ comment.comment }}</p>
     <a class="text-decoration-none" data-bs-toggle="collapse" href="#reply{{comment.id}}" role="button" aria-expanded="false" aria-controls="reply{{comment.id}}">
       <i class="bi bi-reply"></i>
-      Yorum yap
+      Yorumlar
     </a>
     <div class="collapse" id="reply{{comment.id}}">
       <div class="card card-body">
@@ -136,7 +136,7 @@
           <div class="row"> 
             <input type="hidden" name="id" value="{{comment.id}}">
             <div class="col-10">
-              <input type="text" class="form-control" name="reply" placeholder="Cevap ver" required>
+              <input type="text" class="form-control" name="reply" placeholder="Yorum yap" required>
             </div>
             <div class="col-2">
               <button type="submit" class="btn btn-primary">
