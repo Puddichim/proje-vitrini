@@ -1,20 +1,9 @@
 # Proje Vitrini
 
-## Features
-- User authentication and authorization
-- Article creation, editing, and deletion
-- YouTube video embedding
-- Responsive design
-- Search functionality
-- Like system
-- Commenting and replying system
-- Categorising (tagging) system
-- Bookmark system
-
-## Download
+# Cloning the rep
 1. Clone the repository:
 ```bash
-git clone 
+git clone https://github.com/Puddichim/proje-vitrini
 ```
 2. Create a virtual environment and activate it:
 ```bash
