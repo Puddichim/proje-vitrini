@@ -48,7 +48,7 @@ class CreateReply(View):
         comment = get_object_or_404(Comment.objects.filter(is_active=True, id=request.POST.get("id")))
         reply = request.POST.get("reply")
         if not reply:
-            messages.warning(request, "Cevap boş olamaz")
+            messages.warning(request, "Yorum boş olamaz")
             return redirect("blogs:blog", slug=comment.blog.slug)
 
         r = Reply(
@@ -58,23 +58,25 @@ class CreateReply(View):
         )
         r.save()
 
-        messages.success(request, "Cevap oluşturuldu")
+        messages.success(request, "Yorum yapıldı")
         return redirect(get_blog_url(comment.blog.slug)+"#comments")
 
 class CreateBookmark(View):
     def post(self, request):
-        blog = get_object_or_404(Blog.objects.filter(is_active=True, id=request.POST.get("id")))
-        bookmarked = Bookmark.objects.filter(creator=request.user, blog=blog).first()
-        if bookmarked:
-            messages.info(request, "Çoktan kaydedilmiş")
+        blogg = get_object_or_404(Blog.objects.filter(is_active=True, id=request.POST.get("id")))
+        bookmarked = Bookmark.objects.filter(creator=request.user, blog=blogg).first()
+
+        if bookmarked is not None:
+            bookmarked.delete()
+            messages.success(request, "Yer işareti kaldırıldı")
         else:
             b = Bookmark(
-                blog = blog,
+                blog = blogg,
                 creator = request.user
             )
             b.save()
             messages.success(request, "Kaydedildi")
-        return redirect("blogs:blog", slug=blog.slug)
+        return redirect("blogs:blog", slug=blogg.slug)
 
 class CreateLike(View):
     def post(self, request):

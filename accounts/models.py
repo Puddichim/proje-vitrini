@@ -4,7 +4,7 @@ from django.utils.translation import gettext as _
 from .managers import UserManager
 
 class User(AbstractUser):
-    is_author = models.BooleanField(default=False)
+    is_author = models.BooleanField(default=True)
     avatar = models.ImageField(upload_to="avatars/", default="avatars/default.jpeg")
 
     USERNAME_FIELD = "username"

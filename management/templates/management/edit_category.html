@@ -6,14 +6,14 @@
 <div class="container mt-5 mb-5">
   <div class="row">
     <h1 class="text-center mb-3">
-      Edit Category
+      Kategorileri düzenle
     </h1>
   </div>
   <div class="row">
     <form method="post" action="{% url 'manage:edit_category' category.id %}">
       {% csrf_token %}
       <div class="row mb-3">
-        <label for="category" class="form-label">Category:</label>
+        <label for="category" class="form-label">Kategori:</label>
         <input type="text" class="form-control" id="category" placeholder="Kategori" name="category" value="{{ category.category }}" required autofocus>
       </div>
       <div class="row mb-3">
@@ -21,7 +21,7 @@
         <textarea class="form-control" placeholder="Açıklama yazın" id="desc" style="height: 100px" name="desc">{{ category.desc }}</textarea>
       </div>
       <div class="row float-end">
-        <button type="submit" class="btn btn-outline-success">Save</button>
+        <button type="submit" class="btn btn-outline-success">Kaydet</button>
       </div>
     </form>
   </div>

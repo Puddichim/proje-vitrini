@@ -37,7 +37,32 @@
               Kaldır
             </a>
           </td>
+        </tr>{% if comment.replies.all %}
+        <tr>
+          <td colspan="6" class="text-center">
+            <strong>Alt yorumlar:</strong>
+          </td>
         </tr>
+        {% for reply in comment.replies.all %}
+        <tr>
+          <td></td>
+          <td>{{ reply.id }}</td>
+          <td>{{ reply.reply|truncatechars:30 }}</td>
+          <td>{{ reply.creator.username }}</td>
+          <td>{{ reply.comment.blog.id }}</td>
+          <td>{{ reply.comment|truncatechars:30 }}</td>
+          <td>
+            <a class="btn btn-danger" href="{% url 'manage:delete_comment' reply.id %}" role="button">
+              <i class="bi bi-trash3"></i>
+              Kaldır
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+        <td colspan="6" class="text-center">
+          <strong>---------------------------</strong>
+        </td>
+        {% endif %}
         {% endfor %}
       </tbody>
     </table>

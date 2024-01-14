@@ -19,7 +19,9 @@ class Trendings(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return Blog.objects.filter(is_active=True).order_by("-views")
+        blogs = Blog.objects.filter(is_active=True, is_published=True)
+        trending_blogs = sorted(blogs, key=lambda x: x.views + (x.published_on.timestamp() * 0.000001), reverse=True)
+        return trending_blogs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -43,7 +45,7 @@ class Popular(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return Blog.objects.filter(is_active=True).order_by("-views")
+        return Blog.objects.filter(is_active=True, is_published=True).order_by("-views")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,7 +69,7 @@ class Latest(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return Blog.objects.filter(is_active=True).order_by("-published_on")
+        return Blog.objects.filter(is_active=True, is_published=True).order_by("-published_on")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -135,7 +137,6 @@ class BookmarkView(ListView):
 
     def get_queryset(self):
         if self.request.user.is_anonymous:
-            messages.warning(request, "Auth required")
             return redirect("accounts:login")
         return Bookmark.objects.filter(creator=self.request.user).order_by("-created_on")
 

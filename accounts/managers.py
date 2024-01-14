@@ -2,9 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext as _
 
 class UserManager(BaseUserManager):
-    """
-    Custom user model manager.
-    """
+
 
     def create_user(self, username, password, **extra_fields):
         if not username:

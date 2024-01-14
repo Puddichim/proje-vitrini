@@ -15,7 +15,7 @@
     </h2>
   </div>
   <div class="row">
-    <p>Author: {{ blog.creator }} | Views: {{ blog.views }} | Updated: {{ blog.published_on|timesince }} ago</p>
+    <p>Yazar: {{ blog.creator }} | Görüntülenme: {{ blog.views }} | Tarih: {{ blog.published_on|timesince }} önce</p>
   </div>
   <div class="row mb-3">
     {% for category in blog.categories.all %}
@@ -61,8 +61,14 @@
     </div>
     <div class="col">
       {% if bookmarked %}
-      <a href="#" class="text-decoration-none float-end">
+      <form action="{% url 'blogs:create_bookmark' %}" method="post">
+        {% csrf_token %}
+        <a href="#" class="text-decoration-none float-end">
+          <input type="hidden" name="id" value="{{blog.id}}">
+          <button type="submit" style="background:none!important;border:none;padding:0!important;" class="float-end text-primary">
         <i class="bi bi-bookmark-check-fill"></i>
+        </button>
+      </form>
       </a>
       {% else %}
       <form action="{% url 'blogs:create_bookmark' %}" method="post">
@@ -85,7 +91,7 @@
   <div class="row mb-3" id="comments">
     <h1>
       <i class="bi bi-chat-left-text"></i>
-      Comments ({{ comments.count }})
+      Yorumlar ({{ comments.count }})
     </h1>
   </div>
   <div class="row">
@@ -93,16 +99,16 @@
       {% csrf_token %}
       <input type="hidden" name="id" value="{{ blog.id }}">
       <div class="mb-3">
-        <label for="comment" class="form-label">Comment:</label>
+        <label for="comment" class="form-label">Yorum:</label>
         <textarea class="form-control" id="comment" rows="3" name="comment" placeholder="Yorum ekle" required></textarea>
       </div>
       {% if request.user.is_authenticated %}
       <button type="submit" class="float-end btn btn-primary">
         <i class="bi bi-send"></i>
-        Submit
+        Onayla
       </button>
       {% else %}
-      <a href="{% url 'accounts:login' %}" class="btn btn-primary float-end">Login</a>
+      <a href="{% url 'accounts:login' %}" class="btn btn-primary float-end">Giriş</a>
       {% endif %}
     </form>
   </div>
@@ -115,7 +121,7 @@
     <p>{{ comment.comment }}</p>
     <a class="text-decoration-none" data-bs-toggle="collapse" href="#reply{{comment.id}}" role="button" aria-expanded="false" aria-controls="reply{{comment.id}}">
       <i class="bi bi-reply"></i>
-      Reply
+      Yorum yap
     </a>
     <div class="collapse" id="reply{{comment.id}}">
       <div class="card card-body">

@@ -7,7 +7,7 @@
       <th scope="col">Açıklama</th>
       <th scope="col">Kategori</th>
       <th scope="col">Oluşturulma tarihi</th>
-      <th scope="col">Yayımlanma tarihi</th>
+      <th scope="col">Yayımlanma durumu</th>
       <th scope="col">Actions</td>
     </tr>
   </thead>
@@ -20,7 +20,7 @@
       <td>{{ blog.desc|truncatechars:50 }}</td>
       <td>[{{ blog.categories.all|join:", " }}]</td>
       <td>{{ blog.published_on }}</td>
-      <td>{% if blog.is_published %}Yes{% else %}No{% endif %}</td>
+      <td>{% if blog.is_published %}Evet{% else %}Hayır{% endif %}</td>
       <td>
         <a class="btn btn-warning" href="{% url 'manage:edit_blog' blog.id %}" role="button">
           <i class="bi bi-pencil-square"></i>

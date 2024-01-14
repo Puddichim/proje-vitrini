@@ -63,7 +63,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-sliders"></i>
-            Ayarlar
+            Projeler
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -72,6 +72,7 @@
                 Paylaşımlar
               </a>
             </li>
+            {% if user.is_staff %}
             <li>
               <a class="dropdown-item" href="{% url 'manage:category' %}">
                 <i class="bi bi-grid"></i>
@@ -84,6 +85,7 @@
                 Yorumlar
               </a>
             </li>
+            {% endif %}
           </ul>
         </li>
         {% endif %}
@@ -139,10 +141,14 @@
     {% if request.user.is_anonymous %}
     <div class="container p-4 pb-0">
       <section class="">
-        <p class="d-flex justify-content-center align-items-center">
-          <span class="me-3">Kayıt ol</span>
-          <a class="btn btn-outline-light btn-rounded" href="{% url 'accounts:register' %}" role="button">Kayıt ol</a>
-        </p>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="mb-3">
+            <a class="btn btn-outline-light btn-rounded me-2" href="{% url 'accounts:login' %}" role="button">Giriş yap</a>
+          </div>
+          <div class="mb-3">
+            <a class="btn btn-outline-light btn-rounded" href="{% url 'accounts:register' %}" role="button">Kayıt ol</a>
+          </div>
+        </div>
       </section>
     </div>
     {% endif %}
