@@ -2,4 +2,3 @@ django
 tzdata
 django-ckeditor
 pillow
-python-decouple
